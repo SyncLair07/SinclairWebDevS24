@@ -1,8 +1,11 @@
-#Da Lian[^1] Noodle
+# Da Lian[^1] Noodle
 > My hometown [Jingzhou](https://en.wikipedia.org/wiki/Jingzhou) is not only famous of its historical importance in the Three Kingdom Era, but also famous of its breakfasts. This is a recipe for one of the most famous breakfast noodle options you would find in almost every noodle shop in Jingzhou (and it is my personal favourite) - Da Lian Noodle. :yum:
+---
 ![Da Lian Noodle](DaLianNoodle.jpg)
 
 **Ingredients:** [^2]
+
+![Fresh Meats](IngredientsDaLian.jpg)
 - [Jianshui Noodle](https://redhousespice.com/alkaline-noodles-ramen-noodles/) (Alkaline Noodle)
 - Pork Femur Bone
 - Whole Chicken
@@ -30,6 +33,8 @@
 13. Layer the sliced meats and fried eel bones on the noodle.
 14. Pour in the soup base.
 15. Add some chopped scallion or coriander as you wish.
+
+![Da Lian Noodle 2](DaLianNoodlePic2.jpg)
 
 
 [^1]: Not to be confused with the city [Da Lian](https://en.wikipedia.org/wiki/Dalian) which is located at the northeastern region in China.
