@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+        
+    <body>
+        <p>
+            Here is a form containing <b>basic input types</b>. 
+            <br/>For more information see 
+            <a href = "www.w3schools.com/html/html_forms.asp" target="_blank">
+                w3 schools.
+            </a>
+        </p>
+        <!-- THE [FORM]. -->
+        <form action="#" method="post" name="sampleform" target="_self">
+
+            <!-- some friendly name filling to greet our users-->
+            <fieldset>
+                <legend>
+                    Simple Text Input
+                </legend>
+                <p>
+                    You should not be filling this form.
+                </p>
+                <label for="FirstName">
+                    First Name
+                </label>
+                <input name="FirstName" type="text"/>
+                <p>Why are you still filling this form???</p>
+                <label for="LastName" type = "text" required>Last <s>Name</s> Word</label>
+                <input name ="LastName" type="text" placeholder="Last Word" maxlength="1"
+                />
+            </fieldset>
+
+            <!-- TEXTAREA! designed for you to torment people with short response questions-->
+            <fieldset>
+                <legend>Textarea Tag</legend>
+                <label for ="WhyIDM"> "Let's be frank. Why IDM?" </label>
+                <textarea name = "WhyIDM" col="50" rows="10"> U. TELL. ME.</textarea>
+            </fieldset>
+
+            <!-- Here goes the check boxes. You can select multiple of them-->
+            <fieldset>
+                <legend>Check B O X E S</legend>
+                <p>
+                    check boxes and you know what.
+                </p>
+                <label for="checked boxes">you are gonna check all the boxes aren't you?</label>
+                <br/>
+                <input type="checkbox" name="boxes" value="box1"/> first box to be checked
+                <br/>
+                <input type="checkbox" name="boxes" value="box2"/> another box to be checked
+                <br/>
+                <input type="checkbox" name="boxes" value="box3"/> and here goes the third one
+                <br/>
+                <input type="checkbox" name="boxes" value="box4"/> you won't get bored right?
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Select Options</legend>
+                <p>
+                    something will drop down here. feel its fury.
+                </p>
+                <label for ="Garbages"> select the garabge you want to drop</label>
+                <select name = "garbages">
+                    <option value = "stinkyEggs">stinky eggs</option>
+                    <option value = "expiredCereals">expired cereals</option>
+                    <option value = "moldedYogurts">molded yogurts</option>
+                    <option value = "meltedChocolates">melted chocolates</option>
+                </select>
+            </fieldset>
+
+        </form>
+
+
+    </body>
+
+</html>
