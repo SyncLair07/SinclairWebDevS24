@@ -1,0 +1,35 @@
+html, 
+body{
+    margin:0; 
+    /* do this when you have background on your website and you dont want to have boarders */
+}
+
+div{
+    border: 1px solid red;
+    padding: 10px;
+}
+
+.abs-no-parent{
+    background-color: cornflowerblue;
+    position: absolute;
+    top: 20%;
+    right: 100px;
+}
+
+.rel-parent{
+    background-color:blueviolet;
+    width:50%;
+    /* percentage of viewpoint height */
+    height: 100vh;
+    /* position something absolutely inside some element, the parent element needs to be positioned relatively */
+    position: relative;
+
+}
+.abs-rel-parent{
+    background-color: rgb(12,237,16);
+    width:200px;
+    height: 200px;
+    position: absolute;
+    bottom: 10px;
+
+}
