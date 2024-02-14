@@ -4,31 +4,60 @@
     <title>大连面 (Da Lian Noodles) Recipe</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/Recipe_Web_Style.css" />
+    <link rel="icon" type="image/x-icon" href="DaLianNoodle.ico">
+    <style>
+     h1{
+      margin-left: 40px;
+     }
+    </style>
   </head>
   <body>
     <header>
-      <img src="img/noodles_logo.svg" alt="noodles logo" width="50" height="50"/>
-        <nav> <a href="#home">Home</a>
-          <a href="#Dinners">Dinners</a>
-          <a href="#Ingredients">Ingredients</a>
-          <a href="#Ocassions">Ocassions</a>
-          <a href="#Cookbooks">Cookbooks</a>
-        </nav>
+      <img src="../Week02/img/Noodles_Logo.svg" alt="noodles logo" width="50" height="50"/>
+      <nav> 
+            <ul>
+                <li>
+                    <a href="Homepage.html">Home</a>
+                </li>
+                <li>
+                    <a class="active" href="Recipe_Week3.html">Featured</a>
+                </li>
+                <li>
+                    <a href="#Ingredients">Ingredients</a>
+                </li>
+                <li>
+                    <a href="#Restaurant Recommendations">Restaurants</a>
+                </li>
+                <li>
+                    <a href="#Cookbooks">Cookbooks</a>
+                </li>
+                <Li>
+                    <a href="#Videos">Videos</a>
+                </Li>
+                <li style="float:right">
+                    <a href="#Contact">Contact</a>
+                </li>
+            </ul>
+      </nav>
     </header>
 
-    <h1 style="font-size: 28px"><div style="color: tomato;">大连面 (Dalian Noodles)</div>  from Jingzhou</h1>
-
-    <p>
+    
+    <!-- split the name of noodle to left and picture to right -->
+    <div class ="splitview">
+      <h1 style="font-size: 28px"> <span style="color: maroon;">大连面 (Dalian Noodles)</span> from Jingzhou</h1>
+      <p style="background-color:ivory;">
       My hometown
       <a href="https://en.wikipedia.org/wiki/Jingzhou" target="_blank">Jingzhou</a> is not only
       famous of its historical importance in the Three Kingdom Era, but also
       famous of its breakfasts. <br>This is a recipe for one of the most famous
       breakfast noodle options you would find in almost every noodle shop in
       Jingzhou (and it is my personal favourite)<br> - Da Lian Noodle.
-    </p>
-    <p><img src="../Week01/DaLianNoodle.jpg" alt="Da Lian Noodle" width="360" height="300"/></p>
-
-    <h2>Ingredients:</h2>
+      </p>
+      <p><img src="../Week01/DaLianNoodle.jpg" alt="Da Lian Noodle" width="360" height="300"/></p>
+    </div>
+    <!-- ingredients -->
+    <h2 class="ingredients">Ingredients:</h2>
     <ul>
       <li>
         <a href="https://redhousespice.com/alkaline-noodles-ramen-noodles/" target="_blank"
@@ -51,7 +80,7 @@
       <li>Ginger</li>
     </ul>
 
-    <h2>Instructions:</h2>
+    <h2 class="instructions">Instructions:</h2>
     <ol>
       <li>
         Blanch the chicken, eel bone, pork femur bone and ham to remove the
@@ -103,5 +132,13 @@
       <a href ="#StickyRiceYoutiaoWrap">Sticky Rice Youtiao Wrap</a><br>
 
     </p>
+
+    <footer>
+      <a href="#Youtube">Youtube</a>
+      <a href="#Instagram">Instagram</a>
+      <a href="#Facebook">Facebook</a>
+      <a href="#GoogleMap">Google Map List</a>
+    </footer>
+
   </body>
 </html>

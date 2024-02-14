@@ -1,0 +1,38 @@
+
+header nav ul{
+    list-style-type: none;
+    margin-left: 50px;
+    margin-top: 0px;
+    padding: 0;
+    overflow: hidden;
+    background-color: orangered;
+    font-size: 28px;
+    position: fixed;
+    top: 0;
+}
+
+header nav ul li {
+    float: left;
+  }
+  
+header nav ul li a {
+    display: block;
+    color: white;
+    padding: 8px;
+    font-style: normal;
+    text-decoration: none;
+  }
+
+  header nav ul li a:hover {
+    background-color: darkorange;
+    color: antiquewhite;
+  }
+
+  header nav ul li a.active{
+    background-color: maroon;
+    color: antiquewhite;
+  }
+
+  .active{
+    background-color: maroon;
+  }
