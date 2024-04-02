@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- different css stylesheet ranking -->
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/home.css" />
+    <!-- color palatte (HEX)-->
+    <!-- green: #7B876A    grey:#D9D-->
+  </head>
+
+  <body>
+    <header>
+      <div class="logo-container">
+        <img src="./Images/TrashLogo.svg" alt="UrbanSifter Logo" />
+        <h1>UrbanSifter</h1>
+      </div>
+      <nav class="navigation">
+        <a href="About.html">About</a>
+        <a href="Archive.html">Archive</a>
+        <a href="#upload" class="button">Upload</a>
+        <a href="Profile.html" class="button">Profile</a>
+      </nav>
+
+      <select class="nav2"> 
+        <option value="" selected="selected">Select</option> 
+        
+        <option value="/">Home</option> 
+        <option value="/collections/all">Books</option> 
+        <option value="/blogs/five-simple-steps-blog">Blog</option> 
+        <option value="/pages/about-us">About Us</option> 
+        <option value="/pages/support">Support</option> 
+      </select> 
+
+    </header>
+
+    <aside class="sidebar">
+      <div class="filter-section">
+        <h3>Filter</h3>
+
+        <!-- Four Filters for  -->
+        <form id="filter-form">
+          <label
+            ><input type="checkbox" name="filter" value="trash-photography" />
+            Trash Photography</label
+          >
+          <label
+            ><input type="checkbox" name="filter" value="stooping" />
+            Stooping</label
+          >
+          <label
+            ><input type="checkbox" name="filter" value="beach-combing" /> Beach
+            Combing</label
+          >
+          <label
+            ><input type="checkbox" name="filter" value="mud-larking" /> Mud
+            Larking</label
+          >
+        </form>
+      </div>
+      <!-- Search Bar -->
+      <div class="search-section">
+        <input type="text" id="search-bar" placeholder="Search..." />
+      </div>
+      <div class="item-list">
+        <!-- Dynamic list of items will be generated here -->
+      </div>
+    </aside>
+
+    <main>
+      <section class="map-area">
+        <!-- Map integration would go here -->
+        <div id="map"></div>
+
+        <script>
+                function initMap() {
+                  let jay = { lat: 40.69315445669083, lng: -73.98745187690595 };
+                  let map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 15,
+                    center: jay,
+                    mapId: '97405e486e3af20b'
+                  });
+
+                  const contentString1 =
+                    '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    "</div>" +
+                    '<h1 id="firstHeading" class="firstHeading">Site1</h1>' +
+                    '<div id="bodyContent">' +
+                    "<p><b>Image Description Here</b></p>" +
+                    '<p>Photos From This Area <a href="./Images/Trash_Web-14.jpg">'+
+                    "Can Be Found Here</a>" +
+                    "</p>" +
+                    "</div>" +
+                    "</div>"
+                    ;
+                  
+                 
+
+                  const infowindow = new google.maps.InfoWindow({
+                    content: contentString1,
+                    ariaLabel: "Site1",
+                  });
+
+                  let marker1 = new google.maps.Marker({ position: jay, map: map });
+
+                  marker1.addListener("click", () => {
+                    infowindow.open({
+                    anchor: marker1,
+                    map,
+                    });
+                  })
+      
+                
+
+                let fulton = { lat:40.68807947708638, lng: -73.9791077148077 };
+
+                  const contentString2 =
+                    '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    "</div>" +
+                    '<h1 id="firstHeading" class="firstHeading">Site2</h1>' +
+                    '<div id="bodyContent">' +
+                    "<p><b>Image Description Here</b></p>" +
+                    '<p>Photos From This Area <a href="./Images/Trash_Web-05.jpg">'+
+                    "Can Be Found Here</a>" +
+                    "</p>" +
+                    "</div>" +
+                    "</div>"
+                    ;
+                  
+                 
+                  const infowindow2 = new google.maps.InfoWindow({
+                    content: contentString2,
+                    ariaLabel: "Site2",
+                  });
+
+                  let marker2 = new google.maps.Marker({ position: fulton, map: map });
+
+                  marker2.addListener("click", () => {
+                    infowindow2.open({
+                    anchor: marker2,
+                    map,
+                    });
+                  })
+      
+                }
+                window.initMap = initMap;
+        </script>
+        <script
+          async
+          defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9JMAi7k41EAIBLXDVAjbIb1VfPZxeyIU&loading=async&callback=initMap"
+        ></script>
+      </section>
+      <section class="details-area" id="details">
+        <!-- Details shown when a sidebar item is selected -->
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Code to handle sidebar hover and focus events
+        const sidebar = document.querySelector(".sidebar");
+        const searchBar = document.getElementById("search-bar");
+        const mapArea = document.querySelector(".map-area");
+        const detailsArea = document.getElementById("details");
+
+        // Implement the functionality to expand/collapse the sidebar
+        // focus blur events, listening to the search bar input activity
+
+        searchBar.addEventListener("focus", function () {
+          sidebar.style.width = "400px";
+          mapArea.style.marginLeft = "400px";
+        });
+
+        searchBar.addEventListener("blur", function () {
+          sidebar.style.width = "200px";
+          mapArea.style.marginLeft = "200px";
+        });
+      });
+
+      ((g) => {
+        var h,
+          a,
+          k,
+          p = "The Google Maps JavaScript API",
+          c = "google",
+          l = "importLibrary",
+          q = "__ib__",
+          m = document,
+          b = window;
+        b = b[c] || (b[c] = {});
+        var d = b.maps || (b.maps = {}),
+          r = new Set(),
+          e = new URLSearchParams(),
+          u = () =>
+            h ||
+            (h = new Promise(async (f, n) => {
+              await (a = m.createElement("script"));
+              e.set("libraries", [...r] + "");
+              for (k in g)
+                e.set(
+                  k.replace(/[A-Z]/g, (t) => "_" + t[0].toLowerCase()),
+                  g[k]
+                );
+              e.set("callback", c + ".maps." + q);
+              a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+              d[q] = f;
+              a.onerror = () => (h = n(Error(p + " could not load.")));
+              a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+              m.head.append(a);
+            }));
+        d[l]
+          ? console.warn(p + " only loads once. Ignoring:", g)
+          : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
+      })({
+        key: "AIzaSyD9JMAi7k41EAIBLXDVAjbIb1VfPZxeyIU",
+        v: "weekly",
+      });
+    </script>
+  </body>
+</html>

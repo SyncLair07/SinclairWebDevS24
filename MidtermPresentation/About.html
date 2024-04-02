@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About UrbanSifter</title>
+    <link rel="stylesheet" href="css/about.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+            <h1>Welcome to <a href = "Homepage.html" style="text-decoration: none; color: #ffffff;" >UrbanSifter</a></h1>
+            <p>Uncover, Preserve, Share</p>
+        </header>
+
+        <!-- mission statement/ goal of site-->
+        <section id="mission">
+            <h2>Our Mission</h2>
+            <p>At UrbanSifter, we're driven by a passion for uncovering hidden treasures in daily disposables. Our platform serves as a dynamic community for enthusiasts of photography, city walk, stooping, dumpster diving, beach combing, and mud larking. We believe every discarded item has a story and, perhaps, a second chance at life. Through our map and list functionalities, we aim to connect like-minded individuals, share valuable information, and make a tangible impact on reducing waste.</p>
+        </section>
+
+        <!-- 'how to' briefing -->
+        <section id="how-it-works">
+            <h2>How It Works</h2>
+
+            <!-- ordered list for sequential instructions-->
+            <ol>
+                <li><strong>Explore:</strong> Use our interactive map to discover spots near you where treasures await. From urban landscapes to serene beaches, the world is full of hidden gems waiting to be found.</li>
+                <li><strong>Share:</strong> Found something interesting? Share your find with the community! Upload photos, location details, and your story.</li>
+                <li><strong>Learn:</strong> Our list function offers a curated database of locations, tips, and how-to guides. If you would like to learn more about your city through the collective history told by trash, feel free to check out our <a href = Archive.html style="color: #7B876A; text-decoration: none;"><b>ARCHIVE</b></a></li>
+            </ol>
+        </section>
+
+        <!-- Safety Instructions, wear cloves, be careful, etc. -->
+        <section id="safety">
+            <h2>Safety First</h2>
+            <p>Your safety is paramount. Always:
+
+                <ol>
+                    <li>Wear appropriate clothing and protective gear.</li>
+                    <li>Be aware of your surroundings and local regulations.</li>
+                    <li>Never venture into dangerous areas alone.</li>
+                    <li>If you come across information on our platform that seems misleading, incorrect, or potentially harmful, please report it to our moderation team.</li>
+                </ol>
+
+        </section>
+
+        <!-- FAQs -->
+        <section id="faqs">
+            <h2>FAQs</h2>
+
+            <!-- reference jump to beginner's guide -->
+
+            <!-- PLACE HOLDER, Beginner's Guide will be a automatically downloaded pdf file -->
+            <p><strong>How do I start?</br></strong> Check out our <a href = "./files/BeginnerGuideUrbanSifterPlaceHolder.txt" download style="text-decoration: none; color: #7B876A; ">beginner's guide</a></p>
+
+            <!-- PLACE HOLDER AGAIN! should either be a downloadable file or another web page -->
+            <p><strong>Is mud larking legal in my area? </strong> </br> We've compiled <a href = # style="text-decoration: none; color: #7B876A;"> a list of resources </a> to help you understand local laws, but we also recommend doing your own research.</p>
+        </section>
+
+        <section id="get-involved" style = "border-bottom: 5px solid #033">
+            <h2>Get Involved</h2>
+
+            <!-- JUMP TO SIGN UP PAGE, should be a form with submit button-->
+            <p>Ready to start your adventure? <a href = 'Profile.html' style="text-decoration: none; color: #7B876A;">Sign up</a> today and join our community of explorers and environmentalists.</p>
+        </section>
+    </div>
+    <!-- set id to site-footer so it can be triggered close by the function -->
+        <footer id="site-footer">
+            <!-- using mutiple sign (×) for close button seems to be a common application -->
+
+            <button class="close-btn">&times;</button>
+
+            <!-- !!!still need to figure out how to add a email reference link -->
+            <!-- email and social media pop up, can be closed in case viewer are annoyed -->
+            <p>Questions? Suggestions? We'd love to hear from you. Contact us via <a href = "sl10452@nyu.edu" subject="Questions About UrbanSifter" style="color: #e6e6e6;"> <b>Email</b></a> or follow us on <a href = https://www.instagram.com/disposableeverything style="color: #e6e6e6;"><b>Social Media</b></a> </p>
+        </footer>
+    
+    <!-- function for the close (×) button -->
+
+
+    <!-- FUNCTION(S) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            //close button with times symbol
+            var closeButton = document.querySelector('.close-btn');
+
+            var footer = document.getElementById('site-footer');
+    
+    // click to close the footer, no function to restore it though
+
+            closeButton.addEventListener('click', function() {
+                footer.style.display = 'none';
+            });
+        });
+    </script>
+    
+</body>
+</html>

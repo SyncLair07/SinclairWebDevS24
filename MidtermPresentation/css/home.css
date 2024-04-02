@@ -1,0 +1,174 @@
+/* home page css */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f0ebe3;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0; /* Another idea is to have initial left position to not overlap with the sidebar, and the header contract when sidebar is hovered, but it was too hard to achieve this effect so I changed to the current method */
+    right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #7B876A;
+    color: #f0ebe3;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    transition: left 0.5s;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    z-index: 20;
+}
+
+.logo-container img {
+    height: 60px; 
+    z-index: 99;
+}
+
+.logo-container span {
+    margin-left: 10px;
+    font-size: 3rem; 
+    font-weight: bold;
+    display:none;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navigation a, .navigation a.button {
+    color: #f0ebe3;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 2px solid transparent;
+    transition: background-color 0.3s;
+}
+
+.navigation a.button {
+    border-color: #f0ebe3;
+}
+
+.navigation a.button:hover {
+    background-color: #3d4237;
+}
+
+.navigation a:first-child {
+    border-left: none; /* First item has no left border */
+}
+
+.navigation a:not(:last-child) {
+    border-right: 2px solid #f0ebe3; /* Border between nav items */
+}
+
+.sidebar {
+    background-color: #8ca989;
+    width: 200px; 
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 5;
+    overflow-x: hidden;
+    transition: width 0.5s;
+    padding-top: 100px; 
+}
+
+.sidebar:hover {
+    width: 400px; /* Expanded side bar width */
+}
+
+.main-content {
+    margin-left: 200px; 
+    transition: margin-left 0.5s;
+    padding-top: 60px; 
+}
+
+/* no longer doing sidebar on top of nav, but saved for later in case want to use for mobile view */
+/* .sidebar:hover ~ .main-content {
+    margin-left: 400px; 
+} */
+
+.filter-section, .search-section, .item-list {
+    padding: 10px;
+}
+
+
+#filter-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#search-bar {
+    width: 90%; 
+    /* 90% of sidebar width */
+}
+
+/* item list is not implemented yet */
+/* .item-list {
+    margin-top: 20px;
+} */
+
+.map-area {
+    margin-left: 200px; /* same as sidebar width */
+    transition: margin-left 0.5s;
+}
+
+.map-area #map {
+    height: 700px; /* Adjust height as needed */
+    background-color: #ddd; /* Placeholder until map API is loaded in place */
+}
+
+/* the detailed description part maybe removed depending on Map API used in later versions */
+.details-area {
+    display: none; /* should be hidden by default */
+    padding: 20px;
+}
+
+/* media query for mobile phone vertical/portrait view */
+/* current version is compatible with landscape view already */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    
+    header {
+        align-items: left;
+        padding-top: 30px;
+    }
+
+    .logo-container h1 {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0px; 
+        padding-top: 60px; 
+    }
+
+    .map-area {
+        margin: 0px; /* same as sidebar width */
+    }
+
+    .navigation {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo-container span {
+        margin-left: 0px;
+        font-size: 0.5rem; 
+        font-weight: bold;
+        display:inline;
+    }
+
+    .sidebar {
+       display: none;
+    }
+
+}
