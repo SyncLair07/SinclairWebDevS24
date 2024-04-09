@@ -1,3 +1,8 @@
+/* archive page css */
+
+/* basically functions as a photo gallery now, will add more options later */
+
+
 .header {
     display: flex;
     align-items: center;
@@ -52,11 +57,13 @@
     padding-top: 8px;
   }
   
+
+  /* little animation for people to interact with */
   .gallery-item:hover img {
     transform: scale(1.04);
   }
 
-  
+  /* back button */
   .home-button {
     margin-right: auto; 
     padding: 8px 16px;

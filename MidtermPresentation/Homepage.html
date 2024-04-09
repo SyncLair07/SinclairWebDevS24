@@ -12,10 +12,15 @@
 
   <body>
     <header>
+
+      <!-- logo and website name -->
       <div class="logo-container">
         <img src="./Images/TrashLogo.svg" alt="UrbanSifter Logo" />
-        <h1>UrbanSifter</h1>
+        <h1>UrbanSifter</h1> 
+        <!-- name will be hidden in mobile mode -->
       </div>
+
+      <!-- two clickable blocks and two buttons-->
       <nav class="navigation">
         <a href="About.html">About</a>
         <a href="Archive.html">Archive</a>
@@ -23,15 +28,22 @@
         <a href="Profile.html" class="button">Profile</a>
       </nav>
 
-      <select class="nav2"> 
+
+      <!-- #################################################################### -->
+      <!-- select drop bar designed for mobile, currently not using this method -->
+
+      <!-- <select class="nav2"> 
         <option value="" selected="selected">Select</option> 
         
-        <option value="/">Home</option> 
-        <option value="/collections/all">Books</option> 
-        <option value="/blogs/five-simple-steps-blog">Blog</option> 
-        <option value="/pages/about-us">About Us</option> 
-        <option value="/pages/support">Support</option> 
-      </select> 
+        <option value="">Home</option> 
+        <option value="">About</option> 
+        <option value="">Archive</option> 
+        <option value="">Upload</option> 
+        <option value="">Profile</option> 
+        <option value="">Filter</option>
+
+      </select>  -->
+      <!-- #################################################################### -->
 
     </header>
 
@@ -39,7 +51,7 @@
       <div class="filter-section">
         <h3>Filter</h3>
 
-        <!-- Four Filters for  -->
+        <!-- Four Filters for search in database -->
         <form id="filter-form">
           <label
             ><input type="checkbox" name="filter" value="trash-photography" />
@@ -59,6 +71,7 @@
           >
         </form>
       </div>
+      
       <!-- Search Bar -->
       <div class="search-section">
         <input type="text" id="search-bar" placeholder="Search..." />
@@ -73,8 +86,16 @@
         <!-- Map integration would go here -->
         <div id="map"></div>
 
+
+
+        <!-- ############## -->
+        <!-- Google Map API -->
+        <!-- ############## -->
+
         <script>
                 function initMap() {
+
+                  //Jay (1st point)
                   let jay = { lat: 40.69315445669083, lng: -73.98745187690595 };
                   let map = new google.maps.Map(document.getElementById("map"), {
                     zoom: 15,
@@ -82,6 +103,7 @@
                     mapId: '97405e486e3af20b'
                   });
 
+                  // google map pin description String
                   const contentString1 =
                     '<div id="content">' +
                     '<div id="siteNotice">' +
@@ -97,12 +119,13 @@
                     ;
                   
                  
-
+                  // pop up window
                   const infowindow = new google.maps.InfoWindow({
                     content: contentString1,
                     ariaLabel: "Site1",
                   });
 
+                  //pin point
                   let marker1 = new google.maps.Marker({ position: jay, map: map });
 
                   marker1.addListener("click", () => {
@@ -113,7 +136,7 @@
                   })
       
                 
-
+                //Fulton (2nd point)
                 let fulton = { lat:40.68807947708638, lng: -73.9791077148077 };
 
                   const contentString2 =
@@ -148,15 +171,21 @@
                 }
                 window.initMap = initMap;
         </script>
+
+        <!-- implementing API -->
         <script
           async
           defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9JMAi7k41EAIBLXDVAjbIb1VfPZxeyIU&loading=async&callback=initMap"
+          src="https://maps.googleapis.com/maps/api/js?key=&loading=async&callback=initMap"
         ></script>
+        <!-- src = "https://maps.googleapis.com/maps/api/js?key= YOUR KEY &loading=async&callback=initMap" -->
       </section>
+
+
       <section class="details-area" id="details">
         <!-- Details shown when a sidebar item is selected -->
       </section>
+
     </main>
 
     <script>
@@ -216,9 +245,10 @@
           ? console.warn(p + " only loads once. Ignoring:", g)
           : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
       })({
-        key: "AIzaSyD9JMAi7k41EAIBLXDVAjbIb1VfPZxeyIU",
+        key: "Your Key",
         v: "weekly",
       });
     </script>
+
   </body>
 </html>
