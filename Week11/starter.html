@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+        <meta charset="utf-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> GeoLocation</title>
+        <script type="text/javascript">
+            let loc 
+
+            document.addEventListener('DOMContentLoaded', ()=>{
+                getLocation()
+            })
+
+            // same as function getLocation(){}
+            const getLocation = () => {
+                if(navigator.geolocation && navigator.geolocation.getCurrentPosition){
+                    //we just hecked if geolocation exists
+                    navigator.geolocation.getCurrentPosition(setPosition, showError)
+                }else{
+                    //we dont have access to getLocation or getCurrentPosition, so display alternative message
+                    alert('Your browser does not support geolocation')
+                }
+            }
+
+            const setPosition = (position) =>{
+                console.log(position.coords.latitude, position.coords.longitude)
+                const loc = document.getElementById('location')
+
+                const lat = position.coords.latitude
+                const lon = position.coords.longitude
+
+                loc.innerHTML = `<p>Latitude: ${lat} <br/> Longitutde: ${lon}</p>`
+            }
+
+            const showError = (error) => {
+                switch(error.code){
+                    case error.PERMISSION_DENIED:
+                        loc.innerHTML = "User denied the request for geolocation"
+                        break
+                    case error.POSITION_UNAVAILABLE:
+                        loc.innerHTML = "Location Info Unavailable"
+                        break
+                    case error.TIMEOUT:
+                        loc.innerHTML = "The location request timed out"
+                        break
+                    case error.UNKOWN_ERROR:
+                        loc.innerHTML = "An unknown error occured"
+                        break
+                    case error.UNKOWN_ERROR:
+                        loc.innerHTML = "An unknown error occured"
+                        break
+                }
+            }
+            
+        </script>
+
+    </head>
+        
+    <body>
+        <div id="location">
+            <p>Currently Searching for a Location...</p>
+        </div>
+    </body>
+
+</html>

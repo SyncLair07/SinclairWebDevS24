@@ -12,11 +12,10 @@
 
   <body>
     <header>
-
       <!-- logo and website name -->
       <div class="logo-container">
         <img src="./Images/TrashLogo.svg" alt="UrbanSifter Logo" />
-        <h1>UrbanSifter</h1> 
+        <h1>UrbanSifter</h1>
         <!-- name will be hidden in mobile mode -->
       </div>
 
@@ -27,7 +26,6 @@
         <a href="#upload" class="button">Upload</a>
         <a href="Profile.html" class="button">Profile</a>
       </nav>
-
 
       <!-- #################################################################### -->
       <!-- select drop bar designed for mobile, currently not using this method -->
@@ -44,7 +42,6 @@
 
       </select>  -->
       <!-- #################################################################### -->
-
     </header>
 
     <aside class="sidebar">
@@ -71,7 +68,7 @@
           >
         </form>
       </div>
-      
+
       <!-- Search Bar -->
       <div class="search-section">
         <input type="text" id="search-bar" placeholder="Search..." />
@@ -86,106 +83,88 @@
         <!-- Map integration would go here -->
         <div id="map"></div>
 
-
-
         <!-- ############## -->
         <!-- Google Map API -->
         <!-- ############## -->
 
         <script>
-                function initMap() {
 
-                  //Jay (1st point)
-                  let jay = { lat: 40.69315445669083, lng: -73.98745187690595 };
-                  let map = new google.maps.Map(document.getElementById("map"), {
-                    zoom: 15,
-                    center: jay,
-                    mapId: '97405e486e3af20b'
-                  });
+            function getRandomImageString(siteNum) {
+              const totalImage = 44; //currently holding 44 trash photos in Git
+              const imageNum = Math.floor(Math.random() * totalImage) + 1;
+              const contentString = `
+                 <div id="content">
+                  <div id="siteNotice"></div>
+                   <h1 id="firstHeading" class="firstHeading">Site${siteNum}</h1>
+                   <div id="bodyContent">
+                    <p><b>Image Description Here</b></p>
+                    <p>Photos From This Area <a href="./Images/Trash_Web-${imageNum}.jpg">Can Be Found Here</a></p>
+                  </div>
+                 </div>`
 
-                  // google map pin description String
-                  const contentString1 =
-                    '<div id="content">' +
-                    '<div id="siteNotice">' +
-                    "</div>" +
-                    '<h1 id="firstHeading" class="firstHeading">Site1</h1>' +
-                    '<div id="bodyContent">' +
-                    "<p><b>Image Description Here</b></p>" +
-                    '<p>Photos From This Area <a href="./Images/Trash_Web-14.jpg">'+
-                    "Can Be Found Here</a>" +
-                    "</p>" +
-                    "</div>" +
-                    "</div>"
-                    ;
-                  
-                 
-                  // pop up window
-                  const infowindow = new google.maps.InfoWindow({
-                    content: contentString1,
-                    ariaLabel: "Site1",
-                  });
+              return contentString;
+            }
 
-                  //pin point
-                  let marker1 = new google.maps.Marker({ position: jay, map: map });
+          function initMap() {
+            //Jay (1st point)
+            let jay = { lat: 40.69315445669083, lng: -73.98745187690595 };
+            let map = new google.maps.Map(document.getElementById("map"), {
+              zoom: 15,
+              center: jay,
+              mapId: "97405e486e3af20b",
+            });
 
-                  marker1.addListener("click", () => {
-                    infowindow.open({
-                    anchor: marker1,
-                    map,
-                    });
-                  })
-      
-                
-                //Fulton (2nd point)
-                let fulton = { lat:40.68807947708638, lng: -73.9791077148077 };
+            // pop up window
+            const infowindow1 = new google.maps.InfoWindow({
+              content: getRandomImageString(1),
+              ariaLabel: "Site1",
+            });
 
-                  const contentString2 =
-                    '<div id="content">' +
-                    '<div id="siteNotice">' +
-                    "</div>" +
-                    '<h1 id="firstHeading" class="firstHeading">Site2</h1>' +
-                    '<div id="bodyContent">' +
-                    "<p><b>Image Description Here</b></p>" +
-                    '<p>Photos From This Area <a href="./Images/Trash_Web-05.jpg">'+
-                    "Can Be Found Here</a>" +
-                    "</p>" +
-                    "</div>" +
-                    "</div>"
-                    ;
-                  
-                 
-                  const infowindow2 = new google.maps.InfoWindow({
-                    content: contentString2,
-                    ariaLabel: "Site2",
-                  });
+            //pin point
+            let marker1 = new google.maps.Marker({ position: jay, map: map });
 
-                  let marker2 = new google.maps.Marker({ position: fulton, map: map });
+            marker1.addListener("click", () => {
+              infowindow1.open({
+                anchor: marker1,
+                map,
+              });
+            });
 
-                  marker2.addListener("click", () => {
-                    infowindow2.open({
-                    anchor: marker2,
-                    map,
-                    });
-                  })
-      
-                }
-                window.initMap = initMap;
+            //Fulton (2nd point)
+            let fulton = { lat: 40.68807947708638, lng: -73.9791077148077 };
+
+            const infowindow2 = new google.maps.InfoWindow({
+              content: getRandomImageString(2),
+              ariaLabel: "Site2",
+            });
+
+            let marker2 = new google.maps.Marker({
+              position: fulton,
+              map: map,
+            });
+
+            marker2.addListener("click", () => {
+              infowindow2.open({
+                anchor: marker2,
+                map,
+              });
+            });
+          }
+          window.initMap = initMap;
         </script>
 
         <!-- implementing API -->
         <script
           async
           defer
-          src="https://maps.googleapis.com/maps/api/js?key=&loading=async&callback=initMap"
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwkHzhgJd3r5gW7ne1DnRfQtvCDUmd1IY&loading=async&callback=initMap"
         ></script>
         <!-- src = "https://maps.googleapis.com/maps/api/js?key= YOUR KEY &loading=async&callback=initMap" -->
       </section>
 
-
       <section class="details-area" id="details">
         <!-- Details shown when a sidebar item is selected -->
       </section>
-
     </main>
 
     <script>
@@ -245,10 +224,9 @@
           ? console.warn(p + " only loads once. Ignoring:", g)
           : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
       })({
-        key: "Your Key",
+        key: "AIzaSyCwkHzhgJd3r5gW7ne1DnRfQtvCDUmd1IY",
         v: "weekly",
       });
     </script>
-
   </body>
 </html>
