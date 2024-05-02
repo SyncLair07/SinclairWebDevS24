@@ -1,0 +1,79 @@
+/* about page css */
+
+/* maybe change the font, sans pro can be used as a back up plan*/
+
+/* Using inter now because it is also the default font in Figma which I like to use before I found preferred options */
+
+body {
+    font-family: 'Inter', sans-serif;
+
+    /* maybe change to #FFFFCC if want to use Web Safe Color */
+    background-color: #f0ebe3;
+    color: #333;
+
+    /* background */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+
+.container {
+
+    /* Width should be changed according to screen size for responsive design */
+    width: 80%;
+    margin: auto;
+    /* maybe overflow scroll when screen size is too small */
+    overflow: hidden;
+}
+
+
+header {
+    background: #7B876A ;
+    color: #ffffff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: 5px solid #033;
+}
+
+
+header h1, header p {
+    text-align: center;
+}
+
+
+section {
+    padding: 20px;
+    border-bottom: 1px dotted #033;
+    border-right: 5px solid #033;
+    border-left: 5px solid #033;
+}
+
+h2 {
+    color: #033;
+}
+
+ol {
+    list-style-position: inside;
+}
+
+footer#site-footer {
+    background: #7B876A;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.close-btn {
+    float: right;
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+}

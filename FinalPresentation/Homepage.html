@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- different css stylesheet ranking -->
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/home.css" />
+    <!-- color palatte (HEX)-->
+    <!-- green: #7B876A    grey:#D9D-->
+  </head>
+
+  <body>
+    <header>
+      <!-- logo and website name -->
+      <div class="logo-container">
+        <img src="./Images/TrashLogo.svg" alt="UrbanSifter Logo" />
+        <h1>UrbanSifter</h1>
+        <!-- name will be hidden in mobile mode -->
+      </div>
+
+      <!-- two clickable blocks and two buttons-->
+      <nav class="navigation">
+        <a href="About.html">About</a>
+        <a href="Archive.html">Archive</a>
+        <button id="myBtn" class="button">Upload</button>
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Share Your Finding</h2>
+            <form id="uploadForm">
+              <label for="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Enter a name for your finding"
+              />
+
+              <fieldset>
+                <legend>Type of Finding</legend>
+                <!-- Checkbox Style Reference: https://moderncss.dev/pure-css-custom-checkbox-style/ -->
+                <!-- set to form-control because want to add style for the checkbox if have time -->
+                <select id="type" name="type">
+                  <option value="trashPhotography">Trash Photography</option>
+                  <option value="stooping">Stooping</option>
+                  <option value="mudLarking">Mud Larking</option>
+                  <option value="beachCombing">Beach Combing</option>
+                </select>
+              </fieldset>
+
+              <label for="description">Description:</label>
+              <textarea
+                id="description"
+                name="description"
+                required
+                placeholder="Describe your finding"
+                rows="4"
+                cols="50"
+              ></textarea>
+
+              <label for="coordinates"
+                >Coordinates (Latitude, Longitude):</label
+              >
+              <input
+                type="text"
+                id="coordinates"
+                name="coordinates"
+                placeholder="40.7128, -74.0060"
+                required
+              />
+
+              <label for="image">Image:</label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                required
+              />
+
+              <button type="submit" class="submit">Upload</button>
+            </form>
+          </div>
+        </div>
+        <a href="Profile.html" class="button">Profile</a>
+      </nav>
+    </header>
+
+    <aside class="sidebar">
+      <div class="filter-section">
+        <h3>Filter</h3>
+        <form id="filter-form">
+          <label
+            ><input
+              type="checkbox"
+              name="filter"
+              value="trashPhotography"
+            />Trash Photography</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              name="filter"
+              value="stooping"
+            />Stooping</label
+          >
+          <label
+            ><input type="checkbox" name="filter" value="mudLarking" />Mud
+            Larking</label
+          >
+          <label
+            ><input type="checkbox" name="filter" value="beachCombing" />Beach
+            Combing</label
+          >
+        </form>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-section">
+        <!-- constantly monitoring input -->
+        <!-- allow user to search item by item name -->
+        <input type="text" id="search-bar" placeholder="Search by name..." />
+      </div>
+
+      <!-- Item List -->
+      <div id="filtered-items" class="item-list">
+        <!-- Filtered items will be shown here -->
+      </div>
+    </aside>
+    <a href="./Images/Icons/Trash.png"></a>
+    <main>
+      <section class="map-area">
+        <!-- Map integration would go here -->
+        <div id="map"></div>
+
+        <!-- ############## -->
+        <!-- Google Map API -->
+        <!-- ############## -->
+
+        <script>
+          function getRandomImageString(siteNum) {
+            const totalImage = 44; //currently holding 44 trash photos in Git
+            const imageNum = Math.floor(Math.random() * totalImage) + 1;
+            const contentString = `
+                 <div id="content">
+                  <div id="siteNotice"></div>
+                   <h1 id="firstHeading" class="firstHeading">Site${siteNum}</h1>
+                   <div id="bodyContent">
+                    <p><b>Image Description Here</b></p>
+                    <p>Photos From This Area <a href="./Images/Trash_Web-${imageNum}.jpg">Can Be Found Here</a></p>
+                  </div>
+                 </div>`;
+
+            return contentString;
+          }
+
+          function initializeDefaultPlaces() {
+            // Check if the 'places' key exists in local storage
+            if (!localStorage.getItem("places")) {
+              // Define the default places
+              const defaultPlaces = [
+                {
+                  name: "Jay Street",
+                  lat: 40.69315445669083,
+                  lng: -73.98745187690595,
+                  description: "370 Jay Photography Stop",
+                  type: "trashPhotography",
+                  imageURL: "./Images/Trash_Web-5.jpg",
+                },
+                {
+                  name: "Fulton Street",
+                  lat: 40.68807947708638,
+                  lng: -73.9791077148077,
+                  description: "Stooping Spot1",
+                  type: "stooping",
+                  imageURL: "./Images/Trash_Web-36.jpg",
+                },
+              ];
+
+              // Store the default places in local storage
+              localStorage.setItem("places", JSON.stringify(defaultPlaces));
+            }
+          }
+
+          function initMap() {
+            const places = JSON.parse(localStorage.getItem("places")) || [];
+            const map = new google.maps.Map(document.getElementById("map"), {
+              zoom: 10,
+              center: { lat: 40.6932, lng: -73.9866 },
+              mapId: "97405e486e3af20b",
+            });
+
+            places.forEach((place) => {
+              const iconPath = {
+                url: determineIcon(place.type), // Function to determine icon path
+                scaledSize: new google.maps.Size(25, 25), // Sizes are set to a width and height
+              };
+
+              const marker = new google.maps.Marker({
+                position: { lat: place.lat, lng: place.lng },
+                map: map,
+                title: place.name,
+                icon: iconPath,
+              });
+
+              const infowindow = new google.maps.InfoWindow({
+                content: `<h2>${place.name}</h2><p>${place.description}</p><img src="${place.imageURL}" alt="Image" style="width:200px;">`,
+              });
+
+              marker.addListener("click", () => {
+                infowindow.open(map, marker);
+              });
+            });
+          }
+
+          function determineIcon(type) {
+            switch (type) {
+              case "trashPhotography":
+                return "./Images/Icons/Trash.png";
+              case "stooping":
+                return "./Images/Icons/Stooping.png";
+              case "mudLarking":
+                return "./Images/Icons/Mudlarking.png";
+              case "beachCombing":
+                return "./Images/Icons/Beachcombing.png";
+              default:
+                return "icons/default.png"; 
+            }
+          }
+
+          // Add a unified filter application function
+          function applyUnifiedFilters() {
+            const searchTerm = document
+              .getElementById("search-bar")
+              .value.toLowerCase();
+            console.log(searchTerm);
+            const selectedFilters = Array.from(
+              document.querySelectorAll('input[name="filter"]:checked')
+            ).map((el) => el.value);
+
+            const places = JSON.parse(localStorage.getItem("places")) || [];
+            const filteredPlaces = places.filter(
+              (place) =>
+                (selectedFilters.length === 0 ||
+                  selectedFilters.includes(place.type)) &&
+                place.name.toLowerCase().includes(searchTerm)
+            );
+            console.log(filteredPlaces);
+            updateMapMarkers(filteredPlaces);
+            updateSidebarItems(filteredPlaces);
+          }
+
+          // listening to search & filter
+          document
+            .getElementById("search-bar")
+            .addEventListener("input", applyUnifiedFilters);
+          document
+            .getElementById("filter-form")
+            .addEventListener("change", applyUnifiedFilters);
+
+          function updateMapMarkers(places) {
+            const map = new google.maps.Map(document.getElementById("map"), {
+              zoom: 10,
+              center: { lat: 40.6932, lng: -73.9866 },
+              mapId: "97405e486e3af20b",
+            });
+
+
+            places.forEach((place) => {
+              const iconPath = {
+                url: determineIcon(place.type),
+                scaledSize: new google.maps.Size(25, 25), //uniform size of icon
+              };
+
+              const marker = new google.maps.Marker({
+                position: { lat: place.lat, lng: place.lng },
+                map: map,
+                title: place.name,
+                icon: iconPath,
+              });
+
+              const infowindow = new google.maps.InfoWindow({
+                content: `<h2>${place.name}</h2><p>${place.description}</p><img src="${place.imageURL}" alt="Image" style="width:200px;">`,
+              });
+
+              marker.addListener("click", () => {
+                infowindow.open(map, marker);
+              });
+            });
+          }
+
+          // update sidebar item list
+          function updateSidebarItems(places) {
+            const itemsContainer = document.getElementById("filtered-items");
+            itemsContainer.innerHTML = ""; // Clear previous items
+
+            // Limit display to three items or less
+            const itemsToShow = places
+              .sort(() => 0.5 - Math.random())
+              .slice(0, 3);
+
+            itemsToShow.forEach((item) => {
+              const itemElement = document.createElement("div");
+              itemElement.innerHTML = `
+            <h4>${item.name}</h4>
+            <img src="${item.imageURL}" alt="${item.name}" style="width:100%;">
+            <p>${item.description}</p>
+        `;
+              itemsContainer.appendChild(itemElement);
+            });
+          }
+        </script>
+
+        <!-- implementing API -->
+        <script
+          async
+          defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwkHzhgJd3r5gW7ne1DnRfQtvCDUmd1IY&loading=async&callback=initMap"
+        ></script>
+        <!-- src = "https://maps.googleapis.com/maps/api/js?key= YOUR KEY &loading=async&callback=initMap" -->
+      </section>
+
+      <section class="details-area" id="details">
+        <!-- Details shown when a sidebar item is selected -->
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Code to handle sidebar hover and focus events
+        const sidebar = document.querySelector(".sidebar");
+        const searchBar = document.getElementById("search-bar");
+        const mapArea = document.querySelector(".map-area");
+        const detailsArea = document.getElementById("details");
+        initializeDefaultPlaces();
+
+        // Implement the functionality to expand/collapse the sidebar
+        // focus blur events, listening to the search bar input activity
+
+        searchBar.addEventListener("focus", function () {
+          sidebar.style.width = "400px";
+          mapArea.style.marginLeft = "400px";
+        });
+
+        searchBar.addEventListener("blur", function () {
+          sidebar.style.width = "200px";
+          mapArea.style.marginLeft = "200px";
+        });
+      });
+
+      ((g) => {
+        var h,
+          a,
+          k,
+          p = "The Google Maps JavaScript API",
+          c = "google",
+          l = "importLibrary",
+          q = "__ib__",
+          m = document,
+          b = window;
+        b = b[c] || (b[c] = {});
+        var d = b.maps || (b.maps = {}),
+          r = new Set(),
+          e = new URLSearchParams(),
+          u = () =>
+            h ||
+            (h = new Promise(async (f, n) => {
+              await (a = m.createElement("script"));
+              e.set("libraries", [...r] + "");
+              for (k in g)
+                e.set(
+                  k.replace(/[A-Z]/g, (t) => "_" + t[0].toLowerCase()),
+                  g[k]
+                );
+              e.set("callback", c + ".maps." + q);
+              a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+              d[q] = f;
+              a.onerror = () => (h = n(Error(p + " could not load.")));
+              a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+              m.head.append(a);
+            }));
+        d[l]
+          ? console.warn(p + " only loads once. Ignoring:", g)
+          : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
+      })({
+        key: "AIzaSyCwkHzhgJd3r5gW7ne1DnRfQtvCDUmd1IY",
+        v: "weekly",
+      });
+    </script>
+
+    <!-- Geo location API -->
+    <script>
+      const x = document.getElementById("demo");
+
+      // get current geoLocation if possible
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+      }
+
+      function showPosition(position) {
+        x.innerHTML =
+          "Latitude: " +
+          position.coords.latitude +
+          "<br>Longitude: " +
+          position.coords.longitude;
+      }
+    </script>
+
+    <!-- pop up window -->
+    <script>
+      var modal = document.getElementById("myModal");
+      var btn = document.getElementById("myBtn");
+      var span = document.getElementsByClassName("close")[0];
+
+      //open
+      btn.onclick = function () {
+        modal.style.display = "block";
+      };
+      //close
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      //close pop up window when cursor hit elsewhere
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+
+    <!-- uploadform -->
+    <script>
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Get form data
+          const name = document.getElementById("name").value;
+          const coords = document
+            .getElementById("coordinates")
+            .value.split(","); // Splitting the string into an array
+          const description = document.getElementById("description").value;
+          const type = document.getElementById("type").value;
+          const imageFile = document.getElementById("image").files[0];
+
+          if (!imageFile) {
+            alert("Please upload an image.");
+            return;
+          }
+
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const imageURL = e.target.result; // Base64 string of the image
+
+            if (coords.length === 2) {
+              const lat = parseFloat(coords[0].trim()); // Trim whitespace and convert to float
+              const lng = parseFloat(coords[1].trim());
+
+              // Validate the latitude and longitude values
+              if (
+                !isNaN(lat) &&
+                !isNaN(lng) &&
+                lat >= -90 &&
+                lat <= 90 &&
+                lng >= -180 &&
+                lng <= 180
+              ) {
+                const existingPlaces =
+                  JSON.parse(localStorage.getItem("places")) || [];
+                // Create a new place object
+                const newPlace = {
+                  name: name,
+                  lat: lat,
+                  lng: lng,
+                  description: description,
+                  type: type,
+                  imageURL: imageURL,
+                };
+
+                existingPlaces.push(newPlace);
+
+                localStorage.setItem("places", JSON.stringify(existingPlaces));
+
+                initMap();
+              } else {
+                alert("Invalid latitude or longitude.");
+              }
+            } else {
+              alert(
+                "Please enter both latitude and longitude, separated by a comma."
+              );
+            }
+          };
+          reader.readAsDataURL(imageFile);
+        });
+    </script>
+  </body>
+</html>

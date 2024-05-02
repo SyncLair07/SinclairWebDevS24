@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f0ebe3;
+    color: #333;
+}
+
+/* Header styling to match the site-wide theme */
+header {
+    background-color: #7B876A;
+    color: #f0ebe3;
+    height: 60px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    font-size: 30px;
+}
+
+.logo-container img{
+    height: 50px; 
+}
+
+/* Profile section styling */
+.profile-container {
+    padding-top: 100px; /* Adjust depending on header size */
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+/* Profile image with round and clickable style */
+.profile-picture img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Makes the image round */
+    border: 4px solid #7B876A;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 20px; /* Space from header */
+}
+
+/* Styling for sections containing favorites and interactions */
+.favorites-section, .interactions-section {
+    margin: 20px auto;
+    width: 80%; /* Slight margin from the page edges */
+    padding: 10px;
+    background-color: #8ca989; /* Light background for sections */
+    color: #f0ebe3;
+    border-radius: 5px;
+    align-content: center;
+
+}
+
+.favorites-section img{
+    position: relative;
+    width: 100%;
+}
+/* Logout button at the bottom of the profile */
+.logout-button {
+    background-color: #3d4237;
+    color: #f0ebe3;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    width: 90%; /* Match section width */
+    display: block;
+    margin: 20px auto;
+    font-size: 16px;
+}
+
+/* Hover effect for all button-like elements */
+button:hover {
+    background-color: #3d4237;
+    color: white;
+}
